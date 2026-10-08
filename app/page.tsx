@@ -228,7 +228,7 @@ export default function Home() {
           </div>
           <div className="portfolio-grid">
             {/* Card 1 */}
-            <a className="portfolio-card" href="comfortpeak-hvac-landing-page.html">
+            <a className="portfolio-card" href="/comfortpeak-hvac-landing-page">
               <div className="card-top">
                 <span>01 / CONVERSION</span>
                 <b>↗</b>
@@ -247,7 +247,7 @@ export default function Home() {
             </a>
 
             {/* Card 2 */}
-            <a className="portfolio-card" href="comfortpeak-google-ads-campaign.html">
+            <a className="portfolio-card" href="/comfortpeak-google-ads-campaign">
               <div className="card-top">
                 <span>02 / ACQUISITION</span>
                 <b>↗</b>
@@ -273,7 +273,7 @@ export default function Home() {
             </a>
 
             {/* Card 3 */}
-            <a className="portfolio-card" href="comfortpeak-acquisition-system.html">
+            <a className="portfolio-card" href="/comfortpeak-acquisition-system">
               <div className="card-top">
                 <span>03 / SYSTEM</span>
                 <b>↗</b>
@@ -451,7 +451,7 @@ export default function Home() {
           <span>NORTHDEMAND · HVAC CUSTOMER ACQUISITION</span>
           <span>
             Original demonstration work · No fabricated client results ·{" "}
-            <a href="privacy.html">Privacy</a>
+            <a href="/privacy">Privacy</a>
           </span>
         </div>
       </footer>

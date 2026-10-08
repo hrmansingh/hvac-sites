@@ -6,6 +6,7 @@ export default function Home() {
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "error">(
     "idle"
   );
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -39,17 +40,34 @@ export default function Home() {
       <nav>
         <div className="wrap nav">
           <a className="logo" href="#">
-            NORTHDEMAND<span>.</span>
+            NORTHDEMAND<span className="logo-dot">.</span>
           </a>
-          <div className="links">
-            <a href="#system">How it works</a>
-            <a href="#work">Work</a>
-            <a href="#about">About</a>
-            <a href="#contact">Review</a>
+          <div className={`links ${mobileMenuOpen ? "mobile-open" : ""}`}>
+            <a href="#system" onClick={() => setMobileMenuOpen(false)}>
+              How it works
+            </a>
+            <a href="#work" onClick={() => setMobileMenuOpen(false)}>
+              Work
+            </a>
+            <a href="#about" onClick={() => setMobileMenuOpen(false)}>
+              About
+            </a>
+            <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
+              Review
+            </a>
           </div>
-          <a className="navbtn" href="#contact">
-            Get the free review →
-          </a>
+          <div className="nav-actions">
+            <a className="navbtn" href="#contact">
+              Get the free review →
+            </a>
+            <button
+              className="mobile-toggle"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? "✕" : "☰"}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -58,7 +76,8 @@ export default function Home() {
         <div className="wrap">
           <div className="hero-grid">
             <div>
-              <div className="eyebrow">
+              <div className="eyebrow-pill">
+                <span className="pulse-dot"></span>
                 Customer acquisition for U.S. residential HVAC
               </div>
               <h1>
@@ -111,7 +130,9 @@ export default function Home() {
         <div className="wrap">
           <div className="truth-grid">
             <div>
-              <div className="eyebrow">The uncomfortable truth</div>
+              <div className="eyebrow-pill alt">
+                The uncomfortable truth
+              </div>
               <h2>
                 More traffic won&apos;t save a <em>leaky funnel.</em>
               </h2>
@@ -193,7 +214,7 @@ export default function Home() {
         <div className="wrap">
           <div className="work-head">
             <div>
-              <div className="eyebrow">Proof of thinking</div>
+              <div className="eyebrow-pill alt">Proof of thinking</div>
               <h2>
                 Don&apos;t believe me.
                 <br />
@@ -279,7 +300,7 @@ export default function Home() {
       <section id="about" className="about">
         <div className="wrap about-grid">
           <div>
-            <div className="eyebrow">Who&apos;s behind NorthDemand</div>
+            <div className="eyebrow-pill alt">Who&apos;s behind NorthDemand</div>
             <h2>Hi, I&apos;m Dhruv.</h2>
           </div>
           <div className="about-copy">
@@ -307,7 +328,7 @@ export default function Home() {
         <div className="wrap">
           <div className="contact-top">
             <div>
-              <div className="eyebrow">Free HVAC Acquisition Review</div>
+              <div className="eyebrow-pill alt">Free HVAC Acquisition Review</div>
               <h2>
                 Maybe you&apos;re leaving good customers <em>on the table.</em>
               </h2>
@@ -350,15 +371,17 @@ export default function Home() {
               <div className="form-grid">
                 <label>
                   Name
-                  <input name="name" required placeholder="Your name" />
+                  <input name="name" required placeholder="Your name" autoComplete="name" />
                 </label>
                 <label>
                   Email
                   <input
                     name="email"
                     type="email"
+                    inputMode="email"
                     required
                     placeholder="you@company.com"
+                    autoComplete="email"
                   />
                 </label>
                 <label className="full">
@@ -366,8 +389,10 @@ export default function Home() {
                   <input
                     name="website"
                     type="url"
+                    inputMode="url"
                     required
                     placeholder="https://yourcompany.com"
+                    autoComplete="url"
                   />
                 </label>
                 <label className="full">
@@ -391,14 +416,7 @@ export default function Home() {
                   : "Request My Free Acquisition Review →"}
               </button>
               {formStatus === "error" && (
-                <p
-                  style={{
-                    margin: "14px 0 0",
-                    color: "#a23b2b",
-                    fontSize: "12px",
-                    fontWeight: 600,
-                  }}
-                >
+                <p className="form-error">
                   The form didn&apos;t send. Please try again in a moment.
                 </p>
               )}
@@ -437,6 +455,13 @@ export default function Home() {
           </span>
         </div>
       </footer>
+
+      {/* MOBILE STICKY CTA BAR */}
+      <div className="mobile-cta-bar">
+        <a href="#contact" className="btn dark-btn mobile-cta-btn">
+          Get Free HVAC Review →
+        </a>
+      </div>
     </>
   );
 }

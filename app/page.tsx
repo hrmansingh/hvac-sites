@@ -25,7 +25,7 @@ export default function Home() {
       });
       const data = await res.json();
       if (data?.success) {
-        window.location.href = "thank-you.html";
+        window.location.href = "/thank-you";
       } else {
         throw new Error("failed");
       }

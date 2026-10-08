@@ -222,8 +222,7 @@ export default function Home() {
               </h2>
             </div>
             <p>
-              Three original demonstration projects. One fictional HVAC company.
-              No fake results, reviews or made-up case studies.
+              Five original demonstration projects showing conversion landing pages, search strategy, building controls, and acquisition systems.
             </p>
           </div>
           <div className="portfolio-grid">
@@ -291,6 +290,54 @@ export default function Home() {
                 <div className="system-result">QUALIFIED OPPORTUNITY</div>
               </div>
               <strong className="view">Open project →</strong>
+            </a>
+
+            {/* Card 4 */}
+            <a className="portfolio-card" href="/mcguire-controls">
+              <div className="card-top">
+                <span>04 / REDESIGN SHOWCASE</span>
+                <b>↗</b>
+              </div>
+              <h3>McGuire Controls (Before & After)</h3>
+              <p>Full redesign transformation: Outdated 2014 legacy site vs modern HVAC automation system.</p>
+              <div className="mini-ui" style={{ background: "#f0f7f3", border: "1px solid #00875a33" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: "10px", fontWeight: "800", color: "#dc2626", background: "#fee2e2", padding: "2px 6px", borderRadius: "4px" }}>2014 SITE</span>
+                  <span style={{ fontSize: "11px", fontWeight: "800", color: "#00875a" }}>VS</span>
+                  <span style={{ fontSize: "10px", fontWeight: "800", color: "#00875a", background: "#d1fae5", padding: "2px 6px", borderRadius: "4px" }}>REDESIGNED</span>
+                </div>
+                <div style={{ fontSize: "13px", fontWeight: "800", color: "#111827", marginTop: "10px" }}>
+                  Smarter Building Controls
+                </div>
+                <div className="mini-btn" style={{ background: "#00875a", color: "#fff", marginTop: "12px" }}>
+                  View Redesign Case Study →
+                </div>
+              </div>
+              <strong className="view">Open case study →</strong>
+            </a>
+
+            {/* Card 5 */}
+            <a className="portfolio-card" href="/greatbay-industries">
+              <div className="card-top">
+                <span>05 / REDESIGN SHOWCASE</span>
+                <b>↗</b>
+              </div>
+              <h3>Great Bay Industries (Before & After)</h3>
+              <p>Full redesign transformation: Outdated site vs modern Maine HVAC acquisition system.</p>
+              <div className="mini-ui" style={{ background: "#fff7ed", border: "1px solid #f2652233" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: "10px", fontWeight: "800", color: "#dc2626", background: "#fee2e2", padding: "2px 6px", borderRadius: "4px" }}>BEFORE SITE</span>
+                  <span style={{ fontSize: "11px", fontWeight: "800", color: "#f26522" }}>VS</span>
+                  <span style={{ fontSize: "10px", fontWeight: "800", color: "#f26522", background: "#ffedd5", padding: "2px 6px", borderRadius: "4px" }}>REDESIGNED</span>
+                </div>
+                <div style={{ fontSize: "13px", fontWeight: "800", color: "#0f2942", marginTop: "10px" }}>
+                  Comfort Built for Maine
+                </div>
+                <div className="mini-btn" style={{ background: "#f26522", color: "#fff", marginTop: "12px" }}>
+                  View Redesign Case Study →
+                </div>
+              </div>
+              <strong className="view">Open case study →</strong>
             </a>
           </div>
         </div>

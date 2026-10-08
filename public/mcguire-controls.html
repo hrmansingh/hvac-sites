@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>McGuire Controls | Website Redesign Case Study (Before vs After)</title>
+<meta name="description" content="Before & After Redesign Showcase for McGuire Controls: From an outdated 2014 website to a high-converting, modern commercial HVAC controls system.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #00875a;
+  --green-dark: #006644;
+  --green-light: #e6f4ea;
+  --green-badge: #d3efe0;
+  --dark: #0d1b14;
+  --ink: #111827;
+  --muted: #4b5563;
+  --muted-light: #6b7280;
+  --line: #e5e7eb;
+  --paper: #f9fafb;
+  --white: #ffffff;
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --shadow-float: 0 20px 40px rgba(0, 0, 0, 0.12);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --max-width: 1240px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; transition: all 0.2s ease; }
+.container { width: min(calc(100% - 48px), var(--max-width)); margin: 0 auto; }
+
+/* CASE STUDY TOP STRIP */
+.case-study-bar {
+  background: #0f172a;
+  color: #fff;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.case-study-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.case-study-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.pill-tag {
+  background: rgba(0, 135, 90, 0.25);
+  border: 1px solid #34d399;
+  color: #34d399;
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.toggle-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.toggle-btn {
+  padding: 7px 18px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 750;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.toggle-btn.active {
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 135, 90, 0.4);
+}
+.toggle-btn.active-before {
+  background: #dc2626;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.4);
+}
+
+/* OLD SITE PREVIEW CONTAINER */
+#before-view {
+  display: block;
+  background: #d8dcdb;
+  min-height: 800px;
+  padding: 36px 20px;
+}
+.old-browser-frame {
+  max-width: 1060px;
+  margin: 0 auto;
+  background: #e2e8e6;
+  border: 2px solid #a3b0ac;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.old-header-bar {
+  background: linear-gradient(180deg, #ffffff 0%, #b8c4c0 100%);
+  border-bottom: 2px solid #8f9e9a;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.old-logo {
+  border: 2px solid #006600;
+  padding: 8px 16px;
+  background: #fff;
+  color: #006600;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 1.1;
+  text-align: center;
+}
+.old-logo small { display: block; font-size: 11px; color: #333; margin-top: 4px; font-weight: normal; }
+.old-banner-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #005500;
+  text-shadow: 1px 1px 0px #fff;
+}
+.old-layout {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  min-height: 600px;
+  background: #d0dad6;
+}
+.old-sidebar {
+  background: #9aa8a4;
+  padding: 20px 12px;
+  border-right: 2px solid #82928e;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.old-bevel-btn {
+  background: linear-gradient(180deg, #ffffff 0%, #768682 100%);
+  border: 2px solid #55625e;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  box-shadow: inset 0 1px 0 #fff, 0 3px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+.old-content {
+  padding: 30px;
+  background: #eef2f0;
+}
+.old-content h2 { color: #006600; font-size: 22px; margin-bottom: 16px; border-bottom: 2px solid #006600; padding-bottom: 6px; }
+.old-content h3 { font-size: 15px; margin: 16px 0 8px; color: #000; }
+.old-content p { font-size: 13px; color: #333; line-height: 1.6; margin-bottom: 14px; }
+.old-green-box {
+  background: #008800;
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  color: #fff;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.old-device-img { width: 100px; height: 90px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #333; font-size: 11px; font-weight: bold; text-align: center; padding: 6px; }
+
+/* REDESIGNED AFTER VIEW */
+#after-view { display: none; }
+
+/* HEADER */
+.header {
+  position: sticky;
+  top: 50px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand-group { display: flex; align-items: center; gap: 16px; }
+.logo-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--green);
+  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+}
+.logo-title span { color: var(--ink); font-size: 16px; font-weight: 800; letter-spacing: -0.02em; }
+.logo-tag {
+  border-left: 1px solid #d1d5db;
+  padding-left: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted-light);
+}
+.nav-menu { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 600; color: #374151; }
+.nav-menu a:hover { color: var(--green); }
+.dropdown-item { display: inline-flex; align-items: center; gap: 4px; }
+.dropdown-item::after { content: '▾'; font-size: 10px; color: #9ca3af; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-green {
+  background: var(--green);
+  color: var(--white);
+  border: 1px solid var(--green);
+  box-shadow: 0 4px 14px rgba(0, 135, 90, 0.25);
+}
+.btn-green:hover {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 135, 90, 0.35);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid #d1d5db;
+}
+.btn-outline:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-light);
+}
+
+/* HERO SECTION */
+.hero {
+  padding: 56px 0 64px;
+  background: linear-gradient(180deg, #ffffff 0%, #f4faf6 100%);
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.hero-breadcrumbs {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.hero h1 span.green-text {
+  color: var(--green);
+}
+.hero-lead {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 540px;
+  margin-bottom: 32px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.hero-visual {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-float);
+  border: 1px solid var(--line);
+  background: #0f271d;
+  height: 480px;
+}
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-widget {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 310px;
+  background: rgba(13, 27, 20, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  color: var(--white);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.4);
+}
+.widget-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.widget-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 14px;
+}
+.widget-row:last-child { border-bottom: 0; }
+.widget-label { display: flex; align-items: center; gap: 10px; color: #e5e7eb; font-weight: 600; }
+.widget-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(0, 135, 90, 0.2);
+  border: 1px solid rgba(0, 135, 90, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #34d399;
+}
+.widget-value { font-weight: 800; font-size: 15px; }
+.status-normal { color: #34d399; font-size: 13px; display: flex; align-items: center; gap: 6px; }
+.status-dot { width: 8px; height: 8px; background: #34d399; border-radius: 50%; display: inline-block; }
+
+/* TRUST BAR */
+.trust-bar {
+  background: #f0f7f3;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 24px 0;
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(4, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1f2937;
+  border-right: 1px solid #d1d5db;
+  padding-right: 16px;
+}
+.trust-item:last-child { border-right: 0; }
+.trust-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid #d1fae5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+/* SERVICES SECTION */
+.services-section {
+  padding: 96px 0;
+  background: var(--white);
+}
+.section-header {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: flex-end;
+  margin-bottom: 56px;
+}
+.section-eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(34px, 4vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  color: var(--ink);
+}
+.section-title span.green-text { color: var(--green); }
+.section-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-card);
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: #a7f3d0;
+  box-shadow: 0 20px 40px rgba(0, 135, 90, 0.08);
+}
+.service-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--green-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  margin-bottom: 24px;
+}
+.service-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+.service-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.service-link {
+  font-size: 13px;
+  font-weight: 750;
+  color: var(--green);
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.service-card:hover .service-link { gap: 10px; }
+
+/* ADVANTAGE SECTION */
+.advantage-section {
+  padding: 96px 0;
+  background: #f9fafb;
+  border-top: 1px solid var(--line);
+}
+.advantage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.advantage-photo-wrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-float);
+  border: 1px solid var(--line);
+  height: 520px;
+}
+.advantage-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.advantage-badge {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+.advantage-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 750;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.advantage-badge-item:last-child { margin-bottom: 0; }
+.badge-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.advantage-content h2 {
+  font-size: clamp(34px, 4vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.advantage-lead {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin-bottom: 36px;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.feature-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--green-light);
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.feature-item h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.feature-item p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* BOTTOM CTA BANNER */
+.cta-banner {
+  background: var(--dark);
+  color: var(--white);
+  padding: 56px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+.cta-eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #34d399;
+  margin-bottom: 8px;
+}
+.cta-title {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.cta-desc {
+  font-size: 14px;
+  color: #9ca3af;
+  line-height: 1.55;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  padding-left: 24px;
+}
+.cta-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+.phone-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--white);
+}
+.phone-link small { font-weight: 500; color: #9ca3af; font-size: 12px; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .trust-item { border-right: 0; }
+  .cta-inner { grid-template-columns: 1fr; gap: 24px; }
+  .cta-desc { border-left: 0; padding-left: 0; }
+  .cta-actions { align-items: flex-start; }
+}
+@media (max-width: 768px) {
+  .hero-grid, .advantage-grid, .section-header { grid-template-columns: 1fr; gap: 32px; }
+  .nav-menu { display: none; }
+  .features-grid { grid-template-columns: 1fr; }
+  .hero-visual { height: 380px; }
+  .hero-bg-img { height: 380px; }
+  .hero-widget { width: 90%; right: 5%; }
+  .header { top: 60px; }
+}
+</style>
+<script>
+function showView(view) {
+  const afterView = document.getElementById('after-view');
+  const beforeView = document.getElementById('before-view');
+  const btnAfter = document.getElementById('btn-after');
+  const btnBefore = document.getElementById('btn-before');
+
+  if (view === 'after') {
+    beforeView.style.display = 'none';
+    afterView.style.display = 'block';
+    btnAfter.className = 'toggle-btn active';
+    btnBefore.className = 'toggle-btn';
+  } else {
+    afterView.style.display = 'none';
+    beforeView.style.display = 'block';
+    btnBefore.className = 'toggle-btn active-before';
+    btnAfter.className = 'toggle-btn';
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- TOP BEFORE / AFTER CASE STUDY CONTROL BAR -->
+<div class="case-study-bar">
+  <div class="container case-study-inner">
+    <div class="case-study-badge">
+      <span class="pill-tag">Redesign Showcase</span>
+      <span>McGuire Controls Audit: 2014 Site vs Modern NorthDemand System</span>
+    </div>
+    <div class="toggle-controls">
+      <button id="btn-before" class="toggle-btn active-before" onclick="showView('before')">Original 2014 Site (Before)</button>
+      <button id="btn-after" class="toggle-btn" onclick="showView('after')">Redesigned System (After)</button>
+    </div>
+  </div>
+</div>
+
+<!-- BEFORE VIEW (OLD 2014 SITE - SHOWN FIRST BY DEFAULT) -->
+<div id="before-view">
+  <div class="old-browser-frame">
+    <div class="old-header-bar">
+      <div class="old-logo">
+        MCGUIRE CONTROLS
+        <small>Since 1988</small>
+      </div>
+      <div class="old-banner-text">Building Controls... Not just a side line</div>
+    </div>
+    <div class="old-layout">
+      <div class="old-sidebar">
+        <div class="old-bevel-btn">Home</div>
+        <div class="old-bevel-btn">Services</div>
+        <div class="old-bevel-btn">Products</div>
+        <div class="old-bevel-btn">Demo</div>
+        <div class="old-bevel-btn">News</div>
+        <div class="old-bevel-btn">Portfolio</div>
+        <div class="old-bevel-btn">Contact Us</div>
+      </div>
+      <div class="old-content">
+        <h2>Experience, Knowledge, Solutions</h2>
+        <h3>Who We Are</h3>
+        <p>In 1988, Ken McGuire started McGuire & Company to distribute temperature controls and HVAC specialties to mechanical contractors seeking knowledgeable, friendly advice and the right parts for varied applications.</p>
+        <p>As systems became more complex, our services expanded to include complete, turn-key temperature control and computer based monitoring systems. Today, hundreds of buildings throughout Maine, New Hampshire and Massachusetts operate with our controls.</p>
+        
+        <h3>What We Do</h3>
+        <p>McGuire Controls sells, installs and services temperature, lighting and access control systems in commercial, industrial and residential buildings.</p>
+
+        <div class="old-green-box">
+          <div class="old-device-img">Thermostat Unit</div>
+          <div class="old-device-img">BMS Controller</div>
+          <div>
+            <strong>Legacy Hardware & Manual Forms</strong>
+            <p style="color:#eef2f0;font-size:12px;margin-top:4px">Notice: No mobile optimization, zero quote callouts, no instant lead capture.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AFTER VIEW (NEW REDESIGNED WEBSITE) -->
+<div id="after-view">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
+    <div class="brand-group">
+      <div class="logo-title">
+        McGUIRE
+        <span>CONTROLS</span>
+      </div>
+      <div class="logo-tag">Since 1988</div>
+    </div>
+    <nav class="nav-menu">
+      <a href="#services" class="dropdown-item">Services</a>
+      <a href="#solutions" class="dropdown-item">Solutions</a>
+      <a href="#products" class="dropdown-item">Products</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-green">Request a Quote →</a>
+  </div>
+</header>
+
+<!-- HERO SECTION WITH REAL HIGH-RES COMMERCIAL BUILDING PHOTO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-breadcrumbs">HVAC CONTROLS / BUILDING AUTOMATION / SERVICE</div>
+      <h1>Smarter Building Controls. <span class="green-text">Better Comfort. Lower Energy Costs.</span></h1>
+      <p class="hero-lead">McGuire Controls designs, installs and services HVAC controls, building automation, monitoring and integrated systems for commercial, industrial and institutional buildings.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-green">Request a Quote →</a>
+        <a href="#services" class="btn btn-outline">Explore Our Services →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- High Quality Real Commercial Building Image -->
+      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="Commercial Glass Office Building Automation" class="hero-bg-img" />
+      
+      <!-- Floating Performance Widget -->
+      <div class="hero-widget">
+        <div class="widget-title">
+          <span>Building Performance</span>
+          <span style="font-size:10px;color:#34d399">● LIVE</span>
+        </div>
+        <div class="widget-row">
+          <div class="widget-label">
+            <div class="widget-icon">⚡</div>
+            <span>HVAC Status</span>
+          </div>
+          <div class="status-normal"><span class="status-dot"></span> Normal</div>
+        </div>
+        <div class="widget-row">
+          <div class="widget-label">
+            <div class="widget-icon">🌡</div>
+            <span>Temperature</span>
+          </div>
+          <div class="widget-value">72°F</div>
+        </div>
+        <div class="widget-row">
+          <div class="widget-label">
+            <div class="widget-icon">🍃</div>
+            <span>Energy Usage</span>
+          </div>
+          <div class="widget-value" style="color:#34d399">↓ 18%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container trust-grid">
+    <div class="trust-item">
+      <div class="trust-icon">📍</div>
+      <span>Serving Maine, New Hampshire & Massachusetts Since 1988</span>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🛡</div>
+      <span>40+ Years Experience</span>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🏢</div>
+      <span>Commercial & Industrial</span>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⚙</div>
+      <span>Multi-Vendor Expertise</span>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🎧</div>
+      <span>Responsive Service</span>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES SECTION -->
+<section id="services" class="services-section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">OUR SERVICES</div>
+        <h2 class="section-title">Control your building. <span class="green-text">Reduce operating costs.</span></h2>
+      </div>
+      <p class="section-desc">We provide end-to-end building controls and automation solutions that improve comfort, increase efficiency and keep your systems running at peak performance.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon-wrap">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93"/></svg>
+        </div>
+        <h3>HVAC Controls</h3>
+        <p>Precise temperature control, energy efficiency and reliable performance for your HVAC systems.</p>
+        <a href="#contact" class="service-link">Learn More →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0v-5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v5"/></svg>
+        </div>
+        <h3>Building Automation</h3>
+        <p>Integrated systems that connect your building, people and equipment for smarter operations.</p>
+        <a href="#contact" class="service-link">Learn More →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <h3>Lighting & Access Control</h3>
+        <p>Improve safety, security and energy savings with intelligent lighting and access solutions.</p>
+        <a href="#contact" class="service-link">Learn More →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10m-6 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2m0 0V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/></svg>
+        </div>
+        <h3>Monitoring & Integration</h3>
+        <p>Real-time data, proactive alerts and seamless integration with your existing systems.</p>
+        <a href="#contact" class="service-link">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGE SECTION WITH REAL TECHNICIAN/INDUSTRIAL IMAGE -->
+<section id="about" class="advantage-section">
+  <div class="container advantage-grid">
+    <div class="advantage-photo-wrap">
+      <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&w=1200&q=80" alt="Commercial HVAC Control Technician" class="advantage-photo" />
+      <div class="advantage-badge">
+        <div class="advantage-badge-item"><span class="badge-check">✓</span> High efficiency</div>
+        <div class="advantage-badge-item"><span class="badge-check">✓</span> Lower utility costs</div>
+        <div class="advantage-badge-item"><span class="badge-check">✓</span> Greater comfort</div>
+        <div class="advantage-badge-item"><span class="badge-check">✓</span> Longer equipment life</div>
+      </div>
+    </div>
+
+    <div class="advantage-content">
+      <div class="section-eyebrow">THE MCGUIRE ADVANTAGE</div>
+      <h2>Experience. Expertise. Real Results.</h2>
+      <p class="advantage-lead">With over 40 years of experience, McGuire Controls delivers reliable, cost-effective solutions backed by a team of experts and trusted technology partners. We help you get the most from your building systems — today and for the long term.</p>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🍃</div>
+          <div>
+            <h4>Energy Efficiency</h4>
+            <p>Reduce waste and lower operating costs.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🛡</div>
+          <div>
+            <h4>System Reliability</h4>
+            <p>Keep your building running smoothly.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">👥</div>
+          <div>
+            <h4>Expert Team</h4>
+            <p>Skilled, experienced and responsive.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🤝</div>
+          <div>
+            <h4>Trusted Partnerships</h4>
+            <p>Access to leading technology manufacturers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA BANNER -->
+<section id="contact" class="cta-banner">
+  <div class="container cta-inner">
+    <div>
+      <div class="cta-eyebrow">LET'S BUILD A SMARTER, MORE EFFICIENT BUILDING</div>
+      <h3 class="cta-title">Ready to improve your building controls?</h3>
+    </div>
+    <div class="cta-desc">
+      Get expert support, trusted solutions and responsive service from a team that's been keeping buildings running since 1988.
+    </div>
+    <div class="cta-actions">
+      <a href="tel:+12075550123" class="btn btn-green">Request a Quote →</a>
+      <a href="tel:+12075550123" class="phone-link">
+        <span>📞 (207) 555-0123</span>
+        <small>Call us today</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+</div>
+
+</body>
+</html>

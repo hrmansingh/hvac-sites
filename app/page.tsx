@@ -477,10 +477,10 @@ export default function Home() {
                   Company website
                   <input
                     name="website"
-                    type="url"
+                    type="text"
                     inputMode="url"
                     required
-                    placeholder="https://yourcompany.com"
+                    placeholder="yourcompany.com"
                     autoComplete="url"
                   />
                 </label>

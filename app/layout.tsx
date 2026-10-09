@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   title: "NorthDemand — High-Converting HVAC Customer Acquisition",
   description:
     "NorthDemand helps U.S. residential HVAC companies turn high-intent Google searches, from furnace repair to AC repair, into qualified service calls.",
+  icons: {
+    icon: [
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({

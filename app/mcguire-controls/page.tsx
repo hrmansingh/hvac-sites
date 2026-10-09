@@ -961,11 +961,11 @@ export default function McGuireControlsPage() {
           <section id="contact" className="cta-banner">
             <div className="container cta-inner">
               <div>
-                <div className="cta-eyebrow">LET'S BUILD A SMARTER, MORE EFFICIENT BUILDING</div>
+                <div className="cta-eyebrow">LET&apos;S BUILD A SMARTER, MORE EFFICIENT BUILDING</div>
                 <h3 className="cta-title">Ready to improve your building controls?</h3>
               </div>
               <div className="cta-desc">
-                Get expert support, trusted solutions and responsive service from a team that's been keeping buildings running since 1988.
+                Get expert support, trusted solutions and responsive service from a team that&apos;s been keeping buildings running since 1988.
               </div>
               <div className="cta-actions">
                 <a href="tel:+12075550123" className="btn btn-green">Request a Quote →</a>

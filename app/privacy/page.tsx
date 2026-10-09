@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Privacy — NorthDemand",
@@ -38,7 +39,7 @@ export default function PrivacyPage() {
         </p>
 
         <p style={{ marginTop: "22px" }}>
-          <a href="/" style={{ color: "#111518" }}>← Back to NorthDemand</a>
+          <Link href="/" style={{ color: "#111518" }}>← Back to NorthDemand</Link>
         </p>
       </main>
     </div>

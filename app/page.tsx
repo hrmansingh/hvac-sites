@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import TestimonialsSection from "./components/TestimonialsSection";
 
 export default function Home() {
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "error">(
@@ -20,7 +21,7 @@ export default function Home() {
           Accept: "application/json",
         },
         body: JSON.stringify(
-          Object.fromEntries(new FormData(form) as any)
+          Object.fromEntries(new FormData(form))
         ),
       });
       const data = await res.json();
@@ -51,6 +52,9 @@ export default function Home() {
             </a>
             <a href="#about" onClick={() => setMobileMenuOpen(false)}>
               About
+            </a>
+            <a href="#testimonials" onClick={() => setMobileMenuOpen(false)}>
+              Feedback
             </a>
             <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
               Review
@@ -369,6 +373,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* TESTIMONIALS SECTION */}
+      <TestimonialsSection />
 
       {/* CONTACT SECTION */}
       <section id="contact" className="contact">

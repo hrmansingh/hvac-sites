@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export default function McGuireControlsPage() {
-  const [view, setView] = useState<"before" | "after">("before");
+  const [view, setView] = useState<"before" | "after">("after");
 
   return (
     <>
@@ -906,7 +906,7 @@ export default function McGuireControlsPage() {
             <div className="container advantage-grid">
               <div className="advantage-photo-wrap">
                 <img
-                  src="https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&w=1200&q=80"
+                  src="/images/mcguire-controls-tech.jpg"
                   alt="Commercial HVAC Control Technician"
                   className="advantage-photo"
                 />

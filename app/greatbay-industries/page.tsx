@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export default function GreatBayIndustriesPage() {
-  const [view, setView] = useState<"before" | "after">("before");
+  const [view, setView] = useState<"before" | "after">("after");
 
   return (
     <>
@@ -653,12 +653,12 @@ export default function GreatBayIndustriesPage() {
                 </a>
               </div>
 
-              {/* LIVE EMBEDDED IFRAME OF GREATBAYINDUSTRIES.COM */}
-              <div style={{ position: "relative", width: "100%", height: "720px", background: "#fff" }}>
-                <iframe
-                  src="https://greatbayindustries.com/"
-                  title="Original Great Bay Industries Website"
-                  style={{ width: "100%", height: "100%", border: "none" }}
+              {/* ORIGINAL GREATBAYINDUSTRIES.COM PREVIEW */}
+              <div style={{ position: "relative", width: "100%", background: "#474747", overflow: "hidden", textAlign: "center" }}>
+                <img
+                  src="/images/greatbay-before.png"
+                  alt="Original Great Bay Industries Website"
+                  style={{ width: "100%", maxHeight: "780px", objectFit: "contain", display: "block", margin: "0 auto" }}
                 />
               </div>
             </div>
@@ -829,7 +829,7 @@ export default function GreatBayIndustriesPage() {
 
                 <div className="service-card">
                   <img
-                    src="https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?auto=format&fit=crop&w=600&q=80"
+                    src="/images/greatbay-hvac-install.jpg"
                     alt="HVAC Design & Installation"
                     className="service-img"
                   />

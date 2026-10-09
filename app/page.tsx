@@ -1,13 +1,65 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import TransformationShowcase from "./components/TransformationShowcase";
 import TestimonialsSection from "./components/TestimonialsSection";
+import FAQSection from "./components/FAQSection";
 
 export default function Home() {
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "error">(
     "idle"
   );
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Lock body scroll and handle keyboard accessibility when mobile drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setMobileMenuOpen(false);
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [mobileMenuOpen]);
+
+  // Automatically close mobile menu if viewport resized to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768 && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [mobileMenuOpen]);
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    setMobileMenuOpen(false);
+    if (href.startsWith("#")) {
+      const targetId = href.substring(1);
+      if (targetId === "top" || targetId === "") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }, 60);
+      }
+    }
+  };
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -38,42 +90,148 @@ export default function Home() {
   return (
     <>
       {/* NAV */}
-      <nav>
+      <nav className={`navbar-header ${mobileMenuOpen ? "mobile-nav-active" : ""}`}>
         <div className="wrap nav">
-          <a className="logo" href="#">
+          <a
+            className="logo"
+            href="#"
+            onClick={(e) => handleNavClick(e, "#top")}
+            aria-label="NorthDemand Home"
+          >
             NORTHDEMAND<span className="logo-dot">.</span>
           </a>
-          <div className={`links ${mobileMenuOpen ? "mobile-open" : ""}`}>
-            <a href="#system" onClick={() => setMobileMenuOpen(false)}>
-              How it works
-            </a>
-            <a href="#work" onClick={() => setMobileMenuOpen(false)}>
-              Work
-            </a>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)}>
-              About
-            </a>
-            <a href="#testimonials" onClick={() => setMobileMenuOpen(false)}>
-              Feedback
-            </a>
-            <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
-              Review
-            </a>
+
+          {/* DESKTOP NAV LINKS */}
+          <div className="links desktop-links">
+            <a href="#system">How it works</a>
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#testimonials">Feedback</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Review</a>
           </div>
+
           <div className="nav-actions">
             <a className="navbtn" href="#contact">
               Get the free review →
             </a>
             <button
-              className="mobile-toggle"
+              className={`mobile-toggle ${mobileMenuOpen ? "is-open" : ""}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle navigation menu"
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav-drawer"
             >
-              {mobileMenuOpen ? "✕" : "☰"}
+              <span className="hamburger-box">
+                <span className="hamburger-line line-1"></span>
+                <span className="hamburger-line line-2"></span>
+                <span className="hamburger-line line-3"></span>
+              </span>
             </button>
           </div>
         </div>
+
+        {/* MOBILE DRAWER */}
+        <div
+          id="mobile-nav-drawer"
+          className={`mobile-drawer ${mobileMenuOpen ? "drawer-open" : ""}`}
+          aria-hidden={!mobileMenuOpen}
+        >
+          <div className="mobile-drawer-inner">
+            <div className="mobile-nav-section-label">Navigation</div>
+            <div className="mobile-nav-list" role="navigation">
+              <a
+                href="#system"
+                className="mobile-nav-item"
+                onClick={(e) => handleNavClick(e, "#system")}
+              >
+                <div className="mobile-nav-item-content">
+                  <span className="mobile-nav-num">01</span>
+                  <span className="mobile-nav-text">How it works</span>
+                </div>
+                <span className="mobile-nav-arrow">→</span>
+              </a>
+              <a
+                href="#work"
+                className="mobile-nav-item"
+                onClick={(e) => handleNavClick(e, "#work")}
+              >
+                <div className="mobile-nav-item-content">
+                  <span className="mobile-nav-num">02</span>
+                  <span className="mobile-nav-text">Work & Redesigns</span>
+                </div>
+                <span className="mobile-nav-arrow">→</span>
+              </a>
+              <a
+                href="#about"
+                className="mobile-nav-item"
+                onClick={(e) => handleNavClick(e, "#about")}
+              >
+                <div className="mobile-nav-item-content">
+                  <span className="mobile-nav-num">03</span>
+                  <span className="mobile-nav-text">About Dhruv</span>
+                </div>
+                <span className="mobile-nav-arrow">→</span>
+              </a>
+              <a
+                href="#testimonials"
+                className="mobile-nav-item"
+                onClick={(e) => handleNavClick(e, "#testimonials")}
+              >
+                <div className="mobile-nav-item-content">
+                  <span className="mobile-nav-num">04</span>
+                  <span className="mobile-nav-text">Verified Feedback</span>
+                </div>
+                <span className="mobile-nav-arrow">→</span>
+              </a>
+              <a
+                href="#faq"
+                className="mobile-nav-item"
+                onClick={(e) => handleNavClick(e, "#faq")}
+              >
+                <div className="mobile-nav-item-content">
+                  <span className="mobile-nav-num">05</span>
+                  <span className="mobile-nav-text">FAQ</span>
+                </div>
+                <span className="mobile-nav-arrow">→</span>
+              </a>
+              <a
+                href="#contact"
+                className="mobile-nav-item"
+                onClick={(e) => handleNavClick(e, "#contact")}
+              >
+                <div className="mobile-nav-item-content">
+                  <span className="mobile-nav-num">06</span>
+                  <span className="mobile-nav-text">Free Review Request</span>
+                </div>
+                <span className="mobile-nav-arrow">→</span>
+              </a>
+            </div>
+
+            <div className="mobile-drawer-cta">
+              <a
+                href="#contact"
+                className="mobile-drawer-btn"
+                onClick={(e) => handleNavClick(e, "#contact")}
+              >
+                <span>Get the free review</span>
+                <span className="btn-arrow">→</span>
+              </a>
+              <div className="mobile-drawer-status">
+                <span className="pulse-dot"></span>
+                <span>Direct Google search & conversion for U.S. residential HVAC</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </nav>
+
+      {/* MOBILE BACKDROP OVERLAY */}
+      <div
+        className={`mobile-backdrop ${mobileMenuOpen ? "backdrop-open" : ""}`}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
 
       {/* HERO */}
       <header className="hero">
@@ -216,134 +374,8 @@ export default function Home() {
       {/* WORK SECTION */}
       <section id="work" className="work">
         <div className="wrap">
-          <div className="work-head">
-            <div>
-              <div className="eyebrow-pill alt">Proof of thinking</div>
-              <h2>
-                Don&apos;t believe me.
-                <br />
-                <em>Look at the work.</em>
-              </h2>
-            </div>
-            <p>
-              Five original demonstration projects showing conversion landing pages, search strategy, building controls, and acquisition systems.
-            </p>
-          </div>
-          <div className="portfolio-grid">
-            {/* Card 1 */}
-            <a className="portfolio-card" href="/comfortpeak-hvac-landing-page">
-              <div className="card-top">
-                <span>01 / CONVERSION</span>
-                <b>↗</b>
-              </div>
-              <h3>Make the click convert.</h3>
-              <p>A landing page built around the homeowner&apos;s decision to call.</p>
-              <div className="mini-ui landing-mini">
-                <div className="mini-title">
-                  No heat tonight?
-                  <br />
-                  <em>Let&apos;s get it fixed today.</em>
-                </div>
-                <div className="mini-btn">Call ComfortPeak →</div>
-              </div>
-              <strong className="view">Open project →</strong>
-            </a>
-
-            {/* Card 2 */}
-            <a className="portfolio-card" href="/comfortpeak-google-ads-campaign">
-              <div className="card-top">
-                <span>02 / ACQUISITION</span>
-                <b>↗</b>
-              </div>
-              <h3>Catch the demand.</h3>
-              <p>
-                A Google Search campaign built around high-intent HVAC searches.
-              </p>
-              <div className="mini-ui ads-mini">
-                <div className="ad-label">SPONSORED · GOOGLE SEARCH</div>
-                <div className="ad-row">
-                  <strong>Furnace Repair Near You</strong>
-                  <span>AD</span>
-                </div>
-                <div className="ad-copy">Same-day heating service · Call now</div>
-                <div className="ad-url">comfortpeak-demo.com/furnace-repair</div>
-                <div className="keyword-row">
-                  <span className="keyword">furnace repair near me</span>
-                  <span className="keyword">no heat dallas</span>
-                </div>
-              </div>
-              <strong className="view">Open project →</strong>
-            </a>
-
-            {/* Card 3 */}
-            <a className="portfolio-card" href="/comfortpeak-acquisition-system">
-              <div className="card-top">
-                <span>03 / SYSTEM</span>
-                <b>↗</b>
-              </div>
-              <h3>Make it work together.</h3>
-              <p>The complete path from search to qualified opportunity.</p>
-              <div className="mini-ui system-mini">
-                <div>
-                  <span>SEARCH</span>
-                  <i>→</i>
-                  <span>AD</span>
-                  <i>→</i>
-                  <span>PAGE</span>
-                </div>
-                <div className="system-result">QUALIFIED OPPORTUNITY</div>
-              </div>
-              <strong className="view">Open project →</strong>
-            </a>
-
-            {/* Card 4 */}
-            <a className="portfolio-card" href="/mcguire-controls">
-              <div className="card-top">
-                <span>04 / REDESIGN SHOWCASE</span>
-                <b>↗</b>
-              </div>
-              <h3>McGuire Controls (Before & After)</h3>
-              <p>Full redesign transformation: Outdated 2014 legacy site vs modern HVAC automation system.</p>
-              <div className="mini-ui" style={{ background: "#f0f7f3", border: "1px solid #00875a33" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: "10px", fontWeight: "800", color: "#dc2626", background: "#fee2e2", padding: "2px 6px", borderRadius: "4px" }}>2014 SITE</span>
-                  <span style={{ fontSize: "11px", fontWeight: "800", color: "#00875a" }}>VS</span>
-                  <span style={{ fontSize: "10px", fontWeight: "800", color: "#00875a", background: "#d1fae5", padding: "2px 6px", borderRadius: "4px" }}>REDESIGNED</span>
-                </div>
-                <div style={{ fontSize: "13px", fontWeight: "800", color: "#111827", marginTop: "10px" }}>
-                  Smarter Building Controls
-                </div>
-                <div className="mini-btn" style={{ background: "#00875a", color: "#fff", marginTop: "12px" }}>
-                  View Redesign Case Study →
-                </div>
-              </div>
-              <strong className="view">Open case study →</strong>
-            </a>
-
-            {/* Card 5 */}
-            <a className="portfolio-card" href="/greatbay-industries">
-              <div className="card-top">
-                <span>05 / REDESIGN SHOWCASE</span>
-                <b>↗</b>
-              </div>
-              <h3>Great Bay Industries (Before & After)</h3>
-              <p>Full redesign transformation: Outdated site vs modern Maine HVAC acquisition system.</p>
-              <div className="mini-ui" style={{ background: "#fff7ed", border: "1px solid #f2652233" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: "10px", fontWeight: "800", color: "#dc2626", background: "#fee2e2", padding: "2px 6px", borderRadius: "4px" }}>BEFORE SITE</span>
-                  <span style={{ fontSize: "11px", fontWeight: "800", color: "#f26522" }}>VS</span>
-                  <span style={{ fontSize: "10px", fontWeight: "800", color: "#f26522", background: "#ffedd5", padding: "2px 6px", borderRadius: "4px" }}>REDESIGNED</span>
-                </div>
-                <div style={{ fontSize: "13px", fontWeight: "800", color: "#0f2942", marginTop: "10px" }}>
-                  Comfort Built for Maine
-                </div>
-                <div className="mini-btn" style={{ background: "#f26522", color: "#fff", marginTop: "12px" }}>
-                  View Redesign Case Study →
-                </div>
-              </div>
-              <strong className="view">Open case study →</strong>
-            </a>
-          </div>
+          {/* BEFORE & AFTER WEBSITE TRANSFORMATION SHOWCASE */}
+          <TransformationShowcase />
         </div>
       </section>
 
@@ -376,6 +408,9 @@ export default function Home() {
 
       {/* TESTIMONIALS SECTION */}
       <TestimonialsSection />
+
+      {/* FAQ SECTION */}
+      <FAQSection />
 
       {/* CONTACT SECTION */}
       <section id="contact" className="contact">
@@ -511,8 +546,12 @@ export default function Home() {
       </footer>
 
       {/* MOBILE STICKY CTA BAR */}
-      <div className="mobile-cta-bar">
-        <a href="#contact" className="btn dark-btn mobile-cta-btn">
+      <div className={`mobile-cta-bar ${mobileMenuOpen ? "cta-bar-hidden" : ""}`}>
+        <a
+          href="#contact"
+          className="btn dark-btn mobile-cta-btn"
+          onClick={(e) => handleNavClick(e, "#contact")}
+        >
           Get Free HVAC Review →
         </a>
       </div>

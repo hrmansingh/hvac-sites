@@ -4,7 +4,6 @@ export const transformationProjects: TransformationProject[] = [
   {
     id: "mcguire-controls",
     projectNumber: "01 / WEBSITE TRANSFORMATION",
-    category: "HVAC CONTROLS · WEBSITE REDESIGN",
     clientName: "McGuire Controls",
     originalUrl: "http://mcguirecontrols.com/",
     originalDisplayUrl: "mcguirecontrols.com",
@@ -21,7 +20,6 @@ export const transformationProjects: TransformationProject[] = [
   {
     id: "greatbay-industries",
     projectNumber: "02 / WEBSITE TRANSFORMATION",
-    category: "RESIDENTIAL & COMMERCIAL HVAC · WEBSITE REDESIGN",
     clientName: "Great Bay Industries",
     originalUrl: "https://greatbayindustries.com/",
     originalDisplayUrl: "greatbayindustries.com",

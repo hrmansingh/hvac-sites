@@ -1,7 +1,7 @@
 export interface TransformationProject {
   id: string;
   projectNumber: string;
-  category: string;
+  category?: string;
   clientName: string;
   originalUrl: string;
   originalDisplayUrl: string;

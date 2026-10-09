@@ -63,7 +63,6 @@ export default function TransformationShowcase() {
         {/* CARD TOP BAR */}
         <div className="transformation-card-top">
           <span className="transformation-meta-left">{activeProject.projectNumber}</span>
-          <span className="transformation-meta-right">{activeProject.category}</span>
         </div>
 
         {/* COMPARISON FRAMES GRID */}

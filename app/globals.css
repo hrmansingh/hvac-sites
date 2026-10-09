@@ -293,7 +293,7 @@ nav {
 .hero {
   background: var(--white);
   border-bottom: 1px solid var(--line);
-  padding: 88px 0 0;
+  padding: 72px 0 0;
   position: relative;
   overflow: hidden;
 }
@@ -433,8 +433,8 @@ nav {
 
 .hero-bottom {
   border-top: 1px solid var(--line);
-  margin-top: 60px;
-  padding: 22px 0;
+  margin-top: 48px;
+  padding: 20px 0;
   display: flex;
   gap: 36px;
   flex-wrap: wrap;
@@ -460,9 +460,15 @@ nav {
   font-size: 13px;
 }
 
-/* SECTIONS */
-section {
-  padding: 96px 0;
+/* SECTIONS - UNIFIED EQUAL SPACING */
+section,
+.truth,
+.work,
+.about,
+.testimonials-section,
+.faq-section,
+.contact {
+  padding: 56px 0;
 }
 
 /* TRUTH */
@@ -596,7 +602,7 @@ section {
   justify-content: space-between;
   align-items: flex-end;
   gap: 40px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
 .transformation-title {
@@ -1297,7 +1303,7 @@ section {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 64px;
   align-items: flex-end;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
 .contact-top h2 {
@@ -1523,14 +1529,14 @@ footer {
 .testimonials-section {
   background: var(--paper);
   border-top: 1px solid var(--line);
-  padding: 80px 0 36px;
+  padding: 56px 0;
   position: relative;
 }
 
 .testimonials-header-clean {
   text-align: center;
   max-width: 720px;
-  margin: 0 auto 56px;
+  margin: 0 auto 32px;
 }
 
 .testimonials-header-clean h2 {
@@ -1730,14 +1736,14 @@ footer {
 .faq-section {
   background: #ffffff;
   border-top: 1px solid var(--line);
-  padding: 44px 0 80px;
+  padding: 56px 0;
   position: relative;
 }
 
 .faq-header {
   text-align: center;
   max-width: 740px;
-  margin: 0 auto 36px;
+  margin: 0 auto 32px;
 }
 
 .faq-header .eyebrow-pill {
@@ -1936,7 +1942,7 @@ footer {
 
 /* CLOSING CTA CARD */
 .faq-closing-cta {
-  margin-top: 60px;
+  margin-top: 40px;
   background: linear-gradient(135deg, #0f1619 0%, #1a2529 100%);
   border-radius: 20px;
   padding: 44px 48px;
@@ -2099,29 +2105,144 @@ footer {
     flex-direction: column;
     align-items: flex-start;
     gap: 18px;
+    margin-bottom: 28px;
   }
   .transformation-head-right {
     align-items: flex-start;
+    width: 100%;
   }
   .transformation-desc {
     text-align: left;
+    max-width: 100%;
+  }
+  .transformation-project-tabs {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .project-tab-btn {
+    min-height: 44px;
+    padding: 8px 16px;
+    font-size: 12.5px;
+    touch-action: manipulation;
+  }
+  .transformation-card {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+  .transformation-card-top {
+    margin-bottom: 20px;
+    padding-bottom: 14px;
   }
   .comparison-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+  .comparison-col {
+    width: 100%;
+    min-width: 0;
+  }
+  .comparison-label-wrap {
+    margin-bottom: 10px;
+  }
+  .browser-chrome-bar {
+    height: 34px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+  .chrome-dots {
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+  }
+  .chrome-url-pill {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    padding: 3px 8px;
+  }
+  .url-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 10.5px;
+  }
+  .open-ext-indicator {
+    flex-shrink: 0;
+    font-size: 11px;
+  }
+  .preview-image-container {
+    aspect-ratio: 16 / 10;
+    width: 100%;
+  }
+  .preview-screenshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .comparison-arrow-divider {
     transform: rotate(90deg);
-    margin: -4px 0;
+    margin: 2px 0;
+    display: flex;
+    justify-content: center;
+  }
+  .arrow-circle {
+    width: 38px;
+    height: 38px;
   }
   .transformation-card-bottom {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 16px;
+    padding-top: 20px;
+  }
+  .bottom-summary-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+  }
+  .the-redesign-tag {
+    font-size: 10.5px;
+  }
+  .redesign-summary-text {
+    font-size: 14px;
+    line-height: 1.5;
   }
   .view-live-action {
     width: 100%;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    font-size: 14px;
+    font-weight: 750;
+    border-radius: 10px;
+    touch-action: manipulation;
+  }
+  .transformation-subpoints {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 18px;
+    padding-left: 2px;
+  }
+  .subpoint-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .subpoint-num {
+    margin-top: 1px;
+    flex-shrink: 0;
   }
   .faq-two-col-grid {
     grid-template-columns: 1fr;
@@ -2144,6 +2265,16 @@ footer {
 }
 
 @media (max-width: 768px) {
+  section,
+  .truth,
+  .work,
+  .about,
+  .testimonials-section,
+  .faq-section,
+  .contact {
+    padding: 44px 0;
+  }
+
   .navbtn {
     display: none;
   }
@@ -2378,8 +2509,14 @@ footer {
     width: min(calc(100% - 32px), var(--max));
   }
 
+  section,
+  .truth,
+  .work,
+  .about,
+  .testimonials-section,
+  .faq-section,
   .contact {
-    padding: 44px 0 54px;
+    padding: 36px 0;
   }
 
   .contact .wrap {
@@ -2496,12 +2633,8 @@ footer {
     margin-top: 14px;
   }
 
-  .testimonials-section {
-    padding: 60px 0;
-  }
-
   .testimonials-header-clean {
-    margin-bottom: 36px;
+    margin-bottom: 22px;
   }
 
   .testimonials-header-clean h2 {
@@ -2518,10 +2651,12 @@ footer {
   }
 
   .transformation-card {
-    padding: 24px 18px;
+    padding: 20px 14px;
+    border-radius: 16px;
   }
   .transformation-title {
-    font-size: 34px;
+    font-size: clamp(28px, 7.5vw, 34px);
+    line-height: 1.02;
   }
   .comparison-hint {
     display: none;
@@ -2531,11 +2666,11 @@ footer {
     gap: 10px;
   }
 
-  .faq-section {
-    padding: 32px 0 56px;
-  }
   .faq-header {
-    margin-bottom: 24px;
+    margin-bottom: 22px;
+  }
+  .faq-closing-cta {
+    margin-top: 28px;
   }
   .faq-accordion-trigger {
     padding: 18px 16px;
@@ -2547,6 +2682,20 @@ footer {
 }
 
 @media (max-width: 380px) {
+  .transformation-card {
+    padding: 16px 12px;
+    border-radius: 14px;
+  }
+
+  .project-tab-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .chrome-dots {
+    display: none;
+  }
+
   .contact .wrap {
     width: calc(100% - 12px);
   }

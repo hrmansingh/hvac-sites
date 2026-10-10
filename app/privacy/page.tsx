@@ -15,7 +15,7 @@ export default function PrivacyPage() {
         
         <h2 style={{ fontSize: "17px", margin: "26px 0 6px" }}>What we collect</h2>
         <p style={{ color: "#4d575d", fontSize: "15px", margin: "0 0 10px" }}>
-          When you request a free acquisition review, we collect the name, email address and company website you enter in the form. We may also see basic visit data, such as pages viewed and device type, through website analytics.
+          When you request a free acquisition review, we collect the name, email address, company website, monthly marketing budget, and any message or notes you enter in the form. We may also see basic visit data, such as pages viewed and device type, through website analytics.
         </p>
 
         <h2 style={{ fontSize: "17px", margin: "26px 0 6px" }}>How we use it</h2>

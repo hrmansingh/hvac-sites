@@ -4,12 +4,17 @@ import { useState, useEffect } from "react";
 import TransformationShowcase from "./components/TransformationShowcase";
 import TestimonialsSection from "./components/TestimonialsSection";
 import FAQSection from "./components/FAQSection";
+import CustomSelectModal from "./components/CustomSelectModal";
+import { MONTHLY_BUDGET_OPTIONS } from "./types/review-request";
 
 export default function Home() {
   const [formStatus, setFormStatus] = useState<"idle" | "sending" | "error">(
     "idle"
   );
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [biggestIssue, setBiggestIssue] = useState("Not enough calls");
+  const [monthlyBudget, setMonthlyBudget] = useState("");
+  const [budgetError, setBudgetError] = useState(false);
 
   // Lock body scroll and handle keyboard accessibility when mobile drawer is open
   useEffect(() => {
@@ -63,8 +68,26 @@ export default function Home() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setFormStatus("sending");
     const form = e.currentTarget;
+
+    // Validate monthly budget selection
+    if (!monthlyBudget) {
+      setBudgetError(true);
+      const budgetTrigger = document.getElementById("custom-select-monthly-budget");
+      if (budgetTrigger) {
+        budgetTrigger.focus();
+        budgetTrigger.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      return;
+    }
+    setBudgetError(false);
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    setFormStatus("sending");
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -484,15 +507,58 @@ export default function Home() {
                     autoComplete="url"
                   />
                 </label>
+                <div className="custom-select-field full">
+                  <span className="field-label">
+                    What&apos;s costing you the most right now?
+                  </span>
+                  <CustomSelectModal
+                    name="biggest-issue"
+                    options={[
+                      "Not enough calls",
+                      "Too many poor-quality leads",
+                      "Leads are too expensive",
+                      "Website isn't converting",
+                      "I'm not sure",
+                    ]}
+                    value={biggestIssue}
+                    onChange={setBiggestIssue}
+                    placeholder="Select your biggest issue…"
+                    modalTitle="What's costing you the most?"
+                  />
+                </div>
+                <div className="custom-select-field full">
+                  <span className="field-label">
+                    What&apos;s your monthly marketing budget? (USD)
+                  </span>
+                  <CustomSelectModal
+                    name="monthly-budget"
+                    required
+                    options={MONTHLY_BUDGET_OPTIONS}
+                    value={monthlyBudget}
+                    onChange={(val) => {
+                      setMonthlyBudget(val);
+                      if (val) setBudgetError(false);
+                    }}
+                    placeholder="Select monthly marketing budget (USD)…"
+                    modalTitle="Monthly Marketing Budget (USD)"
+                    hasError={budgetError}
+                  />
+                  {budgetError && !monthlyBudget && (
+                    <span className="custom-select-error-msg" role="alert">
+                      Please select your monthly marketing budget.
+                    </span>
+                  )}
+                </div>
                 <label className="full">
-                  What&apos;s costing you the most right now?
-                  <select name="biggest-issue">
-                    <option>Not enough calls</option>
-                    <option>Too many poor-quality leads</option>
-                    <option>Leads are too expensive</option>
-                    <option>Website isn&apos;t converting</option>
-                    <option>I&apos;m not sure</option>
-                  </select>
+                  <span>
+                    Anything else we should know?{" "}
+                    <span className="optional-tag">(Optional)</span>
+                  </span>
+                  <textarea
+                    name="message"
+                    rows={4}
+                    placeholder="Tell us about your business, current challenges, or lead-generation goals…"
+                  />
                 </label>
               </div>
               <button

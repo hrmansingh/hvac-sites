@@ -1386,7 +1386,83 @@ section,
 }
 
 .form-grid input,
+.form-grid select,
+.form-grid textarea {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  transition: var(--transition);
+}
+
+.form-grid input,
 .form-grid select {
+  min-height: 50px;
+}
+
+.form-grid textarea {
+  min-height: 108px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+  outline: none;
+  border-color: var(--lime);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+}
+
+.optional-tag {
+  font-weight: 500;
+  text-transform: none;
+  color: #64748b;
+  font-size: 11px;
+  margin-left: 6px;
+}
+
+.form-grid .full {
+  grid-column: 1 / -1;
+}
+
+/* CUSTOM SELECT & FORM OPTION MODAL */
+.custom-select-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-select-field .field-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  display: block;
+}
+
+.custom-select-container {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-hidden-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-select-trigger {
   width: 100%;
   margin-top: 8px;
   padding: 14px 16px;
@@ -1397,18 +1473,305 @@ section,
   font-size: 14px;
   color: var(--ink);
   min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-align: left;
   transition: var(--transition);
 }
 
-.form-grid input:focus,
-.form-grid select:focus {
-  outline: none;
-  border-color: var(--lime);
-  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+.custom-select-trigger.is-placeholder {
+  color: #94a3b8;
 }
 
-.form-grid .full {
-  grid-column: 1 / -1;
+.custom-select-trigger:focus,
+.custom-select-trigger.is-open {
+  outline: none;
+  border-color: var(--lime);
+  box-shadow: 0 0 0 4px rgba(132, 166, 12, 0.15);
+}
+
+.custom-select-trigger.is-invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.custom-select-error-msg {
+  font-size: 12px;
+  font-weight: 600;
+  color: #dc2626;
+  margin-top: 6px;
+  display: block;
+}
+
+.custom-select-trigger-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 8px;
+}
+
+.custom-select-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.custom-select-trigger.is-open .custom-select-chevron {
+  transform: rotate(180deg);
+  color: var(--lime);
+}
+
+/* DESKTOP POPOVER DROPDOWN */
+.custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  z-index: 50;
+  padding: 6px;
+  animation: dropdownScaleIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 290px;
+  overflow-y: auto;
+}
+
+.custom-select-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-select-dropdown::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.custom-select-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.custom-select-option {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+
+.custom-select-option:hover {
+  background: #f1f5f9;
+  color: var(--ink);
+}
+
+.custom-select-option.is-selected {
+  background: rgba(132, 166, 12, 0.12);
+  color: #2d3e02;
+  font-weight: 750;
+}
+
+.option-check-icon {
+  color: var(--lime);
+  display: flex;
+  align-items: center;
+}
+
+/* MOBILE BOTTOM SHEET OPTION MODAL */
+.option-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 19, 25, 0.68);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+  animation: modalFadeIn 0.2s ease;
+}
+
+.option-modal-sheet {
+  width: 100%;
+  max-width: 540px;
+  max-height: 85vh;
+  max-height: 85dvh;
+  background: #ffffff;
+  border-radius: 20px 20px 0 0;
+  padding: 12px 18px 28px;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  animation: sheetSlideUp 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.option-modal-handle {
+  width: 40px;
+  height: 4.5px;
+  border-radius: 99px;
+  background: #cbd5e1;
+  margin: 4px auto 14px;
+  flex-shrink: 0;
+}
+
+.option-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 12px;
+}
+
+.option-modal-eyebrow {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lime);
+  display: block;
+  margin-bottom: 3px;
+}
+
+.option-modal-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.option-modal-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.option-modal-close-btn:hover,
+.option-modal-close-btn:active {
+  background: #e2e8f0;
+  color: var(--ink);
+}
+
+.option-modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  padding: 4px 2px;
+  -webkit-overflow-scrolling: touch;
+  max-height: calc(85dvh - 120px);
+}
+
+.option-modal-item {
+  width: 100%;
+  min-height: 52px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.option-modal-item:active {
+  transform: scale(0.99);
+}
+
+.option-modal-item.is-selected {
+  background: rgba(132, 166, 12, 0.08);
+  border-color: var(--lime);
+  color: #2d3e02;
+  font-weight: 750;
+  box-shadow: 0 2px 10px rgba(132, 166, 12, 0.12);
+}
+
+.option-item-text {
+  flex: 1;
+  padding-right: 12px;
+}
+
+.option-item-check.active {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--lime);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.option-item-check.radio-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+@keyframes sheetSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropdownScaleIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-select-trigger {
+    font-size: 16px; /* Prevents auto-zoom on iOS */
+    padding: 13px 14px;
+    min-height: 48px;
+  }
 }
 
 .form-submit {
@@ -2540,6 +2903,25 @@ footer {
     padding: 30px 22px;
   }
 
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .form-grid input,
+  .form-grid select,
+  .form-grid textarea {
+    font-size: 16px; /* Prevents auto-zoom on iOS */
+    padding: 13px 14px;
+    min-height: 48px;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  .form-grid textarea {
+    min-height: 96px;
+  }
+
   .booking {
     padding: 30px 22px;
   }
@@ -2585,6 +2967,10 @@ footer {
 
   .form-side {
     padding: 22px 14px;
+  }
+
+  .form-grid {
+    gap: 14px;
   }
 
   .booking {
@@ -2754,8 +3140,10 @@ footer {
   }
 
   .form-grid input,
-  .form-grid select {
+  .form-grid select,
+  .form-grid textarea {
     padding: 11px 10px;
+    font-size: 16px;
   }
 
   .form-submit {

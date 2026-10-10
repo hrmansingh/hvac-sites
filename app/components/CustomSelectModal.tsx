@@ -36,10 +36,10 @@ export default function CustomSelectModal({
     setMounted(true);
   }, []);
 
-  // Detect mobile viewport (< 640px)
+  // Detect mobile viewport (<= 768px)
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 640);
+      setIsMobile(window.innerWidth <= 768);
     };
     checkMobile();
     window.addEventListener("resize", checkMobile);

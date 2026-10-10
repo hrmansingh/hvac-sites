@@ -539,7 +539,7 @@ export default function Home() {
                       setMonthlyBudget(val);
                       if (val) setBudgetError(false);
                     }}
-                    placeholder="Select monthly marketing budget (USD)…"
+                    placeholder="Select monthly budget (USD)…"
                     modalTitle="Monthly Marketing Budget (USD)"
                     hasError={budgetError}
                   />

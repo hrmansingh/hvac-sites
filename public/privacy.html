@@ -1,12 +1,283 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Privacy — NorthDemand</title>
-<style>body{margin:0;background:#f3f5f3;color:#111518;font-family:Arial,sans-serif;line-height:1.65}main{width:min(680px,calc(100% - 40px));margin:48px auto;background:#fff;border:1px solid #dfe4e5;padding:40px}h1{font-size:34px;letter-spacing:-.04em;margin:0 0 6px}h2{font-size:17px;margin:26px 0 6px}p{color:#4d575d;font-size:15px;margin:0 0 10px}a{color:#111518}.small{font-size:12px;color:#7b8589}</style></head>
-<body><main>
-<h1>Privacy</h1><p class="small">NorthDemand · Last updated October 2026</p>
-<h2>What we collect</h2><p>When you request a free acquisition review, we collect the name, email address, company website, monthly marketing budget, and any message or notes you enter in the form. We may also see basic visit data, such as pages viewed and device type, through website analytics.</p>
-<h2>How we use it</h2><p>We use your details only to review your website, reply to your request and schedule a call. We do not sell your information.</p>
-<h2>Who can see it</h2><p>Form submissions are processed by Web3Forms and delivered to us by email, and calls are scheduled through Cal.com. The site is hosted on Netlify. These services process your information on our behalf.</p>
-<h2>Email</h2><p>If we email you, you can ask us to stop at any time by replying "unsubscribe," and we will not contact you again.</p>
-<h2>Your choices</h2><p>To see, correct or delete the information we hold about you, reply to any email from us.</p>
-<p style="margin-top:22px"><a href="/">← Back to NorthDemand</a></p>
-</main></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Privacy Policy — NorthDemand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Libre+Baskerville:ital,wght@1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #111518;
+      --muted: #5a666e;
+      --line: #e2e7e8;
+      --paper: #f4f6f4;
+      --lime: #84a60c;
+      --lime-dark: #6a850a;
+      --dark: #0f1619;
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    .wrap { width: min(calc(100% - 40px), var(--max)); margin: auto; }
+    nav {
+      height: 76px;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+      background: rgba(248, 250, 252, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.05em; color: var(--ink); }
+    .logo-dot { color: var(--lime); font-size: 26px; }
+    .btn-back {
+      background: var(--dark);
+      color: #fff;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 750;
+      transition: all 0.2s ease;
+    }
+    .btn-back:hover { background: var(--lime); }
+    .hero { padding: 60px 0 36px; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lime);
+      background: rgba(132, 166, 12, 0.12);
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: clamp(38px, 5.2vw, 56px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      margin: 0 0 16px;
+      font-weight: 850;
+    }
+    h1 em {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-style: italic;
+      color: var(--lime);
+    }
+    .subtitle { font-size: 16px; color: var(--muted); margin: 0 0 16px; max-width: 640px; }
+    .updated-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 5px 14px;
+      border-radius: 99px;
+    }
+    .main-wrap { padding-bottom: 80px; }
+    .card-container {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 12px 36px rgba(15, 22, 25, 0.08);
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+    .section-block {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .section-block:last-of-type { border-bottom: none; padding-bottom: 0; }
+    .section-num { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: var(--lime); text-transform: uppercase; display: block; margin-bottom: 4px; }
+    .section-title { font-size: 19px; font-weight: 800; margin: 0; }
+    .section-body { font-size: 15px; line-height: 1.7; color: #334155; }
+    .section-body p { margin: 0 0 12px; }
+    .section-body p:last-child { margin-bottom: 0; }
+    .highlight-box {
+      background: rgba(132, 166, 12, 0.08);
+      border-left: 3px solid var(--lime);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 14px;
+      font-size: 14px;
+      color: #2b3d02;
+      font-weight: 600;
+    }
+    .cta-banner {
+      margin-top: 36px;
+      background: var(--dark);
+      color: #fff;
+      border-radius: 16px;
+      padding: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .cta-banner h3 { font-size: 20px; font-weight: 800; margin: 0 0 6px; }
+    .cta-banner p { margin: 0; font-size: 14px; color: #94a3b8; }
+    .btn-lime {
+      background: var(--lime);
+      color: #fff;
+      font-weight: 800;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      transition: all 0.2s ease;
+    }
+    .btn-lime:hover { background: var(--lime-dark); }
+    footer {
+      border-top: 1px solid var(--line);
+      background: #fff;
+      padding: 24px 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    @media (max-width: 768px) {
+      .hero { padding: 40px 0 24px; }
+      .card-container { padding: 28px 20px; border-radius: 16px; gap: 28px; }
+      .section-block { grid-template-columns: 1fr; gap: 12px; padding-bottom: 24px; }
+      .cta-banner { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+      .btn-lime { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap nav">
+      <a class="logo" href="/">NORTHDEMAND<span class="logo-dot">.</span></a>
+      <a class="btn-back" href="/">← Back to NorthDemand</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Data Transparency & Governance</span>
+      <h1>Clear, simple privacy.<br><em>No surprises.</em></h1>
+      <p class="subtitle">How NorthDemand collects, uses, and protects your information when you request a review or explore our HVAC acquisition services.</p>
+      <div class="updated-badge">Last updated: October 2026</div>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+    <div class="wrap">
+      <div class="card-container">
+        <article class="section-block">
+          <div>
+            <span class="section-num">01 / Collection</span>
+            <h2 class="section-title">What we collect</h2>
+          </div>
+          <div class="section-body">
+            <p>When you request a Free HVAC Acquisition Review through our website, we collect only the details you explicitly submit in our form:</p>
+            <ul>
+              <li>Your full name and contact information</li>
+              <li>Work email address</li>
+              <li>Company website address (URL)</li>
+              <li>Biggest acquisition challenge or bottleneck</li>
+              <li>Monthly marketing budget tier (in USD)</li>
+              <li>Any optional project background notes or goals you provide</li>
+            </ul>
+            <p>We also collect basic, non-personally identifiable visit data (such as pages viewed, general geographic region, and device type) through standard website analytics.</p>
+          </div>
+        </article>
+
+        <article class="section-block">
+          <div>
+            <span class="section-num">02 / Purpose</span>
+            <h2 class="section-title">How we use it</h2>
+          </div>
+          <div class="section-body">
+            <p>Your information is used strictly to evaluate your current online presence, identify the three biggest opportunities where you may be losing calls or leads, deliver your actionable review, and schedule a discussion call if appropriate.</p>
+            <div class="highlight-box">
+              <strong>Our Promise:</strong> We never sell, rent, monetize, or share your contact information or company data with data brokers or unaffiliated third parties.
+            </div>
+          </div>
+        </article>
+
+        <article class="section-block">
+          <div>
+            <span class="section-num">03 / Infrastructure</span>
+            <h2 class="section-title">Who processes it</h2>
+          </div>
+          <div class="section-body">
+            <p>We rely on trusted, industry-standard third-party providers to securely run our business operations:</p>
+            <ul>
+              <li><strong>Web3Forms:</strong> Processes contact form submissions over encrypted HTTPS and delivers lead notifications directly to our email.</li>
+              <li><strong>Cal.com:</strong> Facilitates seamless booking of advisory and review calls without double-booking.</li>
+              <li><strong>Cloudflare &amp; Netlify:</strong> High-performance, secure cloud hosting infrastructure delivering content globally with DDoS protection.</li>
+            </ul>
+            <p>These platforms process your data solely on our behalf under strict contractual data processing terms.</p>
+          </div>
+        </article>
+
+        <article class="section-block">
+          <div>
+            <span class="section-num">04 / Communication</span>
+            <h2 class="section-title">Email policy</h2>
+          </div>
+          <div class="section-body">
+            <p>We dislike spam as much as you do. When you request a review, you will receive direct, human communication regarding your specific HVAC website analysis.</p>
+            <p>If you ever decide you no longer wish to hear from us, reply "unsubscribe" to any email, and we will promptly cease all future correspondence.</p>
+          </div>
+        </article>
+
+        <article class="section-block">
+          <div>
+            <span class="section-num">05 / Control</span>
+            <h2 class="section-title">Your choices</h2>
+          </div>
+          <div class="section-body">
+            <p>You maintain full control over the personal information you share with us. You have the right at any time to:</p>
+            <ul>
+              <li>Request a copy of the information we have on file for you.</li>
+              <li>Request corrections to any inaccurate business or personal information.</li>
+              <li>Request immediate and permanent deletion of your data from our systems.</li>
+            </ul>
+            <p>To exercise any of these choices, simply reply to any email sent to you by NorthDemand, and we will fulfill your request without hesitation.</p>
+          </div>
+        </article>
+
+        <div class="cta-banner">
+          <div>
+            <h3>Ready to improve your HVAC customer acquisition?</h3>
+            <p>Get your free, actionable 3-point website breakdown in your inbox.</p>
+          </div>
+          <div>
+            <a href="/#contact" class="btn-lime">Get Free HVAC Review →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <span>NORTHDEMAND · HVAC CUSTOMER ACQUISITION</span>
+      <span>Original demonstration work · No fabricated client results · <a href="/privacy">Privacy</a></span>
+    </div>
+  </footer>
+</body>
+</html>

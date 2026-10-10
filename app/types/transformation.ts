@@ -9,6 +9,11 @@ export interface TransformationProject {
   redesignDisplayUrl: string;
   beforeImage: string;
   afterImage: string;
+  beforeFullScreenshot?: string;
+  beforeMobileScreenshot?: string;
+  afterFullScreenshot?: string;
+  afterMobileScreenshot?: string;
+  fullScreenshot?: string;
   summary: string;
   keyPoints: [string, string];
 }

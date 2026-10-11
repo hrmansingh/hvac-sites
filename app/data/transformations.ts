@@ -32,6 +32,10 @@ export const transformationProjects: TransformationProject[] = [
     redesignDisplayUrl: "northdemand.com/greatbay-industries",
     beforeImage: "/images/greatbay-before.png",
     afterImage: "/images/greatbay-after.png",
+    beforeFullScreenshot: "/images/greatbayweb.png",
+    beforeMobileScreenshot: "/images/greatbayindustries.com_(iPhone%2016)%20(1).png",
+    afterFullScreenshot: "/images/greatbaywebpixcel.png",
+    fullScreenshot: "/images/greatbaywebpixcel.png",
     summary: "Clearer messaging. Stronger local trust. A simpler path to booking.",
     keyPoints: [
       "Built around Southern & Central Maine residential & commercial trust",

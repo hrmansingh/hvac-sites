@@ -29,8 +29,12 @@ export default function TransformationShowcase() {
     scrollPositionRef.current = window.scrollY;
     document.body.style.overflow = "hidden";
     setModalView(view);
+    const hasMobileForView =
+      view === "before"
+        ? Boolean(activeProject.beforeMobileScreenshot)
+        : Boolean(activeProject.afterMobileScreenshot);
     const isPhoneMode = typeof window !== "undefined" && window.innerWidth <= 768;
-    setDeviceMode(isPhoneMode ? "mobile" : "web");
+    setDeviceMode(isPhoneMode && hasMobileForView ? "mobile" : "web");
     setIsModalOpen(true);
   };
 
@@ -275,35 +279,37 @@ export default function TransformationShowcase() {
               </div>
 
               {/* DEVICE MODE TOGGLE TABS (DESKTOP / MOBILE) */}
-              <div className="modal-mode-tabs" role="tablist" aria-label="Device view switcher">
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={deviceMode === "web"}
-                  className={`modal-mode-btn ${deviceMode === "web" ? "active" : ""}`}
-                  onClick={() => setDeviceMode("web")}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                    <line x1="8" y1="21" x2="16" y2="21"></line>
-                    <line x1="12" y1="17" x2="12" y2="21"></line>
-                  </svg>
-                  <span>Desktop</span>
-                </button>
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={deviceMode === "mobile"}
-                  className={`modal-mode-btn ${deviceMode === "mobile" ? "active" : ""}`}
-                  onClick={() => setDeviceMode("mobile")}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                  </svg>
-                  <span>Mobile</span>
-                </button>
-              </div>
+              {(modalView === "before" ? Boolean(activeProject.beforeMobileScreenshot) : Boolean(activeProject.afterMobileScreenshot)) && (
+                <div className="modal-mode-tabs" role="tablist" aria-label="Device view switcher">
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={deviceMode === "web"}
+                    className={`modal-mode-btn ${deviceMode === "web" ? "active" : ""}`}
+                    onClick={() => setDeviceMode("web")}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                      <line x1="8" y1="21" x2="16" y2="21"></line>
+                      <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    <span>Desktop</span>
+                  </button>
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={deviceMode === "mobile"}
+                    className={`modal-mode-btn ${deviceMode === "mobile" ? "active" : ""}`}
+                    onClick={() => setDeviceMode("mobile")}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                      <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                    </svg>
+                    <span>Mobile</span>
+                  </button>
+                </div>
+              )}
 
               <button
                 ref={closeButtonRef}

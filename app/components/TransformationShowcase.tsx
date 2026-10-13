@@ -3,10 +3,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { transformationProjects } from "../data/transformations";
+import { TransformationProject } from "../types/transformation";
 
 export default function TransformationShowcase() {
-  const [selectedProjectId, setSelectedProjectId] = useState<string>(
-    transformationProjects[0]?.id || "mcguire-controls"
+  const [modalProject, setModalProject] = useState<TransformationProject>(
+    transformationProjects[0]
   );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalView, setModalView] = useState<"before" | "after">("after");
@@ -15,24 +16,15 @@ export default function TransformationShowcase() {
   const scrollPositionRef = useRef<number>(0);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  const activeProject =
-    transformationProjects.find((p) => p.id === selectedProjectId) ||
-    transformationProjects[0];
-
-  const hasFullScreenshots = Boolean(
-    activeProject.beforeFullScreenshot ||
-      activeProject.afterFullScreenshot ||
-      activeProject.fullScreenshot
-  );
-
-  const openModal = (view: "before" | "after") => {
+  const openModal = (project: TransformationProject, view: "before" | "after") => {
     scrollPositionRef.current = window.scrollY;
     document.body.style.overflow = "hidden";
+    setModalProject(project);
     setModalView(view);
     const hasMobileForView =
       view === "before"
-        ? Boolean(activeProject.beforeMobileScreenshot)
-        : Boolean(activeProject.afterMobileScreenshot);
+        ? Boolean(project.beforeMobileScreenshot)
+        : Boolean(project.afterMobileScreenshot);
     const isPhoneMode = typeof window !== "undefined" && window.innerWidth <= 768;
     setDeviceMode(isPhoneMode && hasMobileForView ? "mobile" : "web");
     setIsModalOpen(true);
@@ -76,12 +68,12 @@ export default function TransformationShowcase() {
   const getModalImageSrc = () => {
     if (modalView === "before") {
       return deviceMode === "mobile"
-        ? (activeProject.beforeMobileScreenshot || activeProject.beforeImage)
-        : (activeProject.beforeFullScreenshot || activeProject.beforeImage);
+        ? (modalProject.beforeMobileScreenshot || modalProject.beforeImage)
+        : (modalProject.beforeFullScreenshot || modalProject.beforeImage);
     } else {
       return deviceMode === "mobile"
-        ? (activeProject.afterMobileScreenshot || activeProject.fullScreenshot || activeProject.afterImage)
-        : (activeProject.afterFullScreenshot || activeProject.fullScreenshot || activeProject.afterImage);
+        ? (modalProject.afterMobileScreenshot || modalProject.fullScreenshot || modalProject.afterImage)
+        : (modalProject.afterFullScreenshot || modalProject.fullScreenshot || modalProject.afterImage);
     }
   };
 
@@ -101,154 +93,148 @@ export default function TransformationShowcase() {
           <p className="transformation-desc">
             See how we turn outdated HVAC websites into clearer, more conversion-focused experiences.
           </p>
+        </div>
+      </div>
 
-          {/* PROJECT SWITCHER TABS */}
-          {transformationProjects.length > 1 && (
-            <div className="transformation-project-tabs" role="tablist" aria-label="Select transformation showcase">
-              {transformationProjects.map((proj) => {
-                const isActive = proj.id === activeProject.id;
-                return (
-                  <button
-                    key={proj.id}
-                    role="tab"
-                    aria-selected={isActive}
-                    aria-controls={`transformation-card-${proj.id}`}
-                    className={`project-tab-btn ${isActive ? "active" : ""}`}
-                    onClick={() => setSelectedProjectId(proj.id)}
-                  >
-                    <span className="tab-num">{proj.projectNumber.slice(0, 2)}</span>
-                    <span className="tab-client">{proj.clientName}</span>
-                  </button>
-                );
-              })}
+      {/* SAMPLES LIST - ALL SAMPLES VISIBLE ON PAGE */}
+      <div className="transformation-cards-list">
+        {transformationProjects.map((project) => {
+          const hasFullScreenshots = Boolean(
+            project.beforeFullScreenshot ||
+              project.afterFullScreenshot ||
+              project.fullScreenshot
+          );
+
+          return (
+            <div key={project.id} className="transformation-item">
+              {/* COMPARISON SHOWCASE CARD */}
+              <div
+                id={`transformation-card-${project.id}`}
+                className="transformation-card"
+                role="region"
+                aria-label={`Website transformation case study for ${project.clientName}`}
+              >
+                {/* CARD TOP BAR */}
+                <div className="transformation-card-top">
+                  <span className="transformation-meta-left">{project.projectNumber}</span>
+                  <span className="transformation-meta-right">{project.clientName}</span>
+                </div>
+
+                {/* COMPARISON FRAMES GRID */}
+                <div className="comparison-grid">
+                  {/* BEFORE COLUMN */}
+                  <div className="comparison-col">
+                    <a
+                      href={project.originalUrl}
+                      target={hasFullScreenshots ? undefined : "_blank"}
+                      rel={hasFullScreenshots ? undefined : "noopener noreferrer"}
+                      title="Preview"
+                      onClick={(e) => {
+                        if (hasFullScreenshots) {
+                          e.preventDefault();
+                          openModal(project, "before");
+                        }
+                      }}
+                      className="browser-preview-frame"
+                      aria-label={`Preview original website for ${project.clientName}`}
+                      role={hasFullScreenshots ? "button" : undefined}
+                      aria-haspopup={hasFullScreenshots ? "dialog" : undefined}
+                    >
+                      <div className="browser-chrome-bar">
+                        <div className="chrome-dots">
+                          <span className="dot red"></span>
+                          <span className="dot yellow"></span>
+                          <span className="dot green"></span>
+                        </div>
+                        <span className="open-ext-indicator" aria-hidden="true">
+                          {hasFullScreenshots ? "⤢" : "↗"}
+                        </span>
+                      </div>
+                      <div className="preview-image-container">
+                        <img
+                          src={project.beforeImage}
+                          alt={`Original website screenshot for ${project.clientName}`}
+                          className="preview-screenshot"
+                          loading="lazy"
+                        />
+                        <div className="preview-hover-overlay">
+                          <span className="overlay-btn">Preview</span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  {/* CENTER VS BADGE */}
+                  <div className="comparison-vs-divider" aria-hidden="true">
+                    <span className="vs-badge">VS</span>
+                  </div>
+
+                  {/* AFTER COLUMN */}
+                  <div className="comparison-col">
+                    <a
+                      href={project.redesignUrl}
+                      target={hasFullScreenshots ? undefined : "_blank"}
+                      rel={hasFullScreenshots ? undefined : "noopener noreferrer"}
+                      title="Preview"
+                      onClick={(e) => {
+                        if (hasFullScreenshots) {
+                          e.preventDefault();
+                          openModal(project, "after");
+                        }
+                      }}
+                      className="browser-preview-frame after-frame"
+                      aria-label={`Preview redesign for ${project.clientName}`}
+                      role={hasFullScreenshots ? "button" : undefined}
+                      aria-haspopup={hasFullScreenshots ? "dialog" : undefined}
+                    >
+                      <div className="browser-chrome-bar">
+                        <div className="chrome-dots">
+                          <span className="dot red"></span>
+                          <span className="dot yellow"></span>
+                          <span className="dot green"></span>
+                        </div>
+                        <span className="open-ext-indicator after-icon" aria-hidden="true">
+                          {hasFullScreenshots ? "⤢" : "↗"}
+                        </span>
+                      </div>
+                      <div className="preview-image-container">
+                        <img
+                          src={project.afterImage}
+                          alt={`Redesigned modern website screenshot for ${project.clientName}`}
+                          className="preview-screenshot"
+                          loading="lazy"
+                        />
+                        <div className="preview-hover-overlay after-overlay">
+                          <span className="overlay-btn after-btn">Preview</span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+                {/* CARD BOTTOM SUMMARY BAR */}
+                <div className="transformation-card-bottom">
+                  <div className="bottom-summary-left">
+                    <span className="the-redesign-tag">THE REDESIGN</span>
+                    <p className="redesign-summary-text">{project.summary}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* SUB-POINTS BELOW CARD */}
+              <div className="transformation-subpoints">
+                <div className="subpoint-item">
+                  <strong className="subpoint-num">01</strong>
+                  <span className="subpoint-text">{project.keyPoints[0]}</span>
+                </div>
+                <div className="subpoint-item">
+                  <strong className="subpoint-num">02</strong>
+                  <span className="subpoint-text">{project.keyPoints[1]}</span>
+                </div>
+              </div>
             </div>
-          )}
-        </div>
-      </div>
-
-      {/* COMPARISON SHOWCASE CARD */}
-      <div
-        id={`transformation-card-${activeProject.id}`}
-        className="transformation-card"
-        role="region"
-        aria-label={`Website transformation case study for ${activeProject.clientName}`}
-      >
-        {/* CARD TOP BAR */}
-        <div className="transformation-card-top">
-          <span className="transformation-meta-left">{activeProject.projectNumber}</span>
-        </div>
-
-        {/* COMPARISON FRAMES GRID */}
-        <div className="comparison-grid">
-          {/* BEFORE COLUMN */}
-          <div className="comparison-col">
-            <a
-              href={activeProject.originalUrl}
-              target={hasFullScreenshots ? undefined : "_blank"}
-              rel={hasFullScreenshots ? undefined : "noopener noreferrer"}
-              title="Preview"
-              onClick={(e) => {
-                if (hasFullScreenshots) {
-                  e.preventDefault();
-                  openModal("before");
-                }
-              }}
-              className="browser-preview-frame"
-              aria-label="Preview original website"
-              role={hasFullScreenshots ? "button" : undefined}
-              aria-haspopup={hasFullScreenshots ? "dialog" : undefined}
-            >
-              <div className="browser-chrome-bar">
-                <div className="chrome-dots">
-                  <span className="dot red"></span>
-                  <span className="dot yellow"></span>
-                  <span className="dot green"></span>
-                </div>
-                <span className="open-ext-indicator" aria-hidden="true">
-                  {hasFullScreenshots ? "⤢" : "↗"}
-                </span>
-              </div>
-              <div className="preview-image-container">
-                <img
-                  src={activeProject.beforeImage}
-                  alt={`Original website screenshot for ${activeProject.clientName}`}
-                  className="preview-screenshot"
-                  loading="lazy"
-                />
-                <div className="preview-hover-overlay">
-                  <span className="overlay-btn">Preview</span>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          {/* CENTER VS BADGE */}
-          <div className="comparison-vs-divider" aria-hidden="true">
-            <span className="vs-badge">VS</span>
-          </div>
-
-          {/* AFTER COLUMN */}
-          <div className="comparison-col">
-            <a
-              href={activeProject.redesignUrl}
-              target={hasFullScreenshots ? undefined : "_blank"}
-              rel={hasFullScreenshots ? undefined : "noopener noreferrer"}
-              title="Preview"
-              onClick={(e) => {
-                if (hasFullScreenshots) {
-                  e.preventDefault();
-                  openModal("after");
-                }
-              }}
-              className="browser-preview-frame after-frame"
-              aria-label="Preview redesign"
-              role={hasFullScreenshots ? "button" : undefined}
-              aria-haspopup={hasFullScreenshots ? "dialog" : undefined}
-            >
-              <div className="browser-chrome-bar">
-                <div className="chrome-dots">
-                  <span className="dot red"></span>
-                  <span className="dot yellow"></span>
-                  <span className="dot green"></span>
-                </div>
-                <span className="open-ext-indicator after-icon" aria-hidden="true">
-                  {hasFullScreenshots ? "⤢" : "↗"}
-                </span>
-              </div>
-              <div className="preview-image-container">
-                <img
-                  src={activeProject.afterImage}
-                  alt={`Redesigned modern website screenshot for ${activeProject.clientName}`}
-                  className="preview-screenshot"
-                  loading="lazy"
-                />
-                <div className="preview-hover-overlay after-overlay">
-                  <span className="overlay-btn after-btn">Preview</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        {/* CARD BOTTOM SUMMARY BAR */}
-        <div className="transformation-card-bottom">
-          <div className="bottom-summary-left">
-            <span className="the-redesign-tag">THE REDESIGN</span>
-            <p className="redesign-summary-text">{activeProject.summary}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* SUB-POINTS BELOW CARD */}
-      <div className="transformation-subpoints">
-        <div className="subpoint-item">
-          <strong className="subpoint-num">01</strong>
-          <span className="subpoint-text">{activeProject.keyPoints[0]}</span>
-        </div>
-        <div className="subpoint-item">
-          <strong className="subpoint-num">02</strong>
-          <span className="subpoint-text">{activeProject.keyPoints[1]}</span>
-        </div>
+          );
+        })}
       </div>
 
       {/* FULL-PAGE SCREENSHOT MODAL */}
@@ -279,7 +265,7 @@ export default function TransformationShowcase() {
               </div>
 
               {/* DEVICE MODE TOGGLE TABS (DESKTOP / MOBILE) */}
-              {(modalView === "before" ? Boolean(activeProject.beforeMobileScreenshot) : Boolean(activeProject.afterMobileScreenshot)) && (
+              {(modalView === "before" ? Boolean(modalProject.beforeMobileScreenshot) : Boolean(modalProject.afterMobileScreenshot)) && (
                 <div className="modal-mode-tabs" role="tablist" aria-label="Device view switcher">
                   <button
                     type="button"
@@ -332,7 +318,7 @@ export default function TransformationShowcase() {
               <div className={`modal-screenshot-wrap ${deviceMode === "mobile" ? "is-mobile-wrap" : ""}`}>
                 <img
                   src={getModalImageSrc()}
-                  alt={`${activeProject.clientName} ${modalView} ${deviceMode} preview`}
+                  alt={`${modalProject.clientName} ${modalView} ${deviceMode} preview`}
                   className="full-screenshot-img"
                 />
               </div>

@@ -675,6 +675,18 @@ section,
   font-weight: 800;
 }
 
+.transformation-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.transformation-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .transformation-card {
   background: #ffffff;
   border: 1px solid var(--line);
@@ -1399,8 +1411,11 @@ section,
   border: 1px solid #cbd5e1;
   border-radius: 8px;
   background: #fff;
-  font: inherit;
+  font-family: inherit;
   font-size: 14px;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
   color: var(--ink);
   transition: var(--transition);
 }
@@ -1416,12 +1431,67 @@ section,
   line-height: 1.5;
 }
 
+/* UNIFIED & CONSISTENT PLACEHOLDER STYLING */
+.form-grid input::placeholder,
+.form-grid textarea::placeholder,
+.custom-select-trigger.is-placeholder,
+.custom-select-trigger.is-placeholder .custom-select-trigger-text {
+  color: #94a3b8 !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 450 !important;
+  letter-spacing: normal !important;
+  line-height: normal !important;
+  font-style: normal !important;
+  text-transform: none !important;
+  opacity: 1 !important;
+}
+
+.form-grid input::-webkit-input-placeholder,
+.form-grid textarea::-webkit-input-placeholder {
+  color: #94a3b8 !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 450 !important;
+  letter-spacing: normal !important;
+  line-height: normal !important;
+  font-style: normal !important;
+  text-transform: none !important;
+  opacity: 1 !important;
+}
+
+.form-grid input::-moz-placeholder,
+.form-grid textarea::-moz-placeholder {
+  color: #94a3b8 !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 450 !important;
+  letter-spacing: normal !important;
+  line-height: normal !important;
+  font-style: normal !important;
+  text-transform: none !important;
+  opacity: 1 !important;
+}
+
+.form-grid input:-ms-input-placeholder,
+.form-grid textarea:-ms-input-placeholder {
+  color: #94a3b8 !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 450 !important;
+  letter-spacing: normal !important;
+  line-height: normal !important;
+  font-style: normal !important;
+  text-transform: none !important;
+  opacity: 1 !important;
+}
+
 .form-grid input:focus,
 .form-grid select:focus,
 .form-grid textarea:focus {
   outline: none;
   border-color: var(--lime);
-  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+  box-shadow: 0 0 0 4px rgba(132, 166, 12, 0.18);
 }
 
 .optional-tag {
@@ -1484,8 +1554,11 @@ section,
   border: 1px solid #cbd5e1;
   border-radius: 8px;
   background: #fff;
-  font: inherit;
+  font-family: inherit;
   font-size: 14px;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
   color: var(--ink);
   min-height: 50px;
   display: flex;
@@ -1498,8 +1571,11 @@ section,
   overflow: hidden;
 }
 
-.custom-select-trigger.is-placeholder {
-  color: #94a3b8;
+.custom-select-trigger.is-placeholder,
+.custom-select-trigger.is-placeholder .custom-select-trigger-text {
+  color: #94a3b8 !important;
+  font-weight: 450 !important;
+  letter-spacing: normal !important;
 }
 
 .custom-select-trigger:focus,
@@ -2573,6 +2649,9 @@ footer {
     font-size: 12.5px;
     touch-action: manipulation;
   }
+  .transformation-cards-list {
+    gap: 36px;
+  }
   .transformation-card {
     padding: 24px 18px;
     border-radius: 18px;
@@ -3196,9 +3275,17 @@ footer {
 
   .form-grid input,
   .form-grid select,
-  .form-grid textarea {
-    padding: 11px 10px;
+  .form-grid textarea,
+  .custom-select-trigger {
+    padding: 11px 12px;
     font-size: 16px;
+  }
+
+  .form-grid input::placeholder,
+  .form-grid textarea::placeholder,
+  .custom-select-trigger.is-placeholder,
+  .custom-select-trigger.is-placeholder .custom-select-trigger-text {
+    font-size: 16px !important;
   }
 
   .form-submit {
